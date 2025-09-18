@@ -45,7 +45,7 @@ spec:
               ephemeral-storage: "2Gi"
           livenessProbe:
             exec:
-              command: ["pg_isready", "-U", "testuser", "-d", "testdb"]
+              command: ["pg_isready", "-U", "testuser", "-d", "testdb", "-q"]
             initialDelaySeconds: 30
             periodSeconds: 20
           readinessProbe:

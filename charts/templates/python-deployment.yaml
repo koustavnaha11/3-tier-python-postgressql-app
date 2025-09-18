@@ -40,13 +40,13 @@ spec:
               ephemeral-storage: "2Gi"
           livenessProbe:
             httpGet:
-              path: /health
+              path: /health/live
               port: 5000
             initialDelaySeconds: 20
             periodSeconds: 15
           readinessProbe:
             httpGet:
-              path: /health
+              path: /health/ready
               port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10
@@ -54,3 +54,4 @@ spec:
             runAsUser: 10001
             runAsGroup: 10001
             readOnlyRootFilesystem: true
+

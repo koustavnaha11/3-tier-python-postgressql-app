@@ -7,21 +7,16 @@ spec:
     matchLabels:
       app: postgres
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
+    - Egress
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: python-app
-    ports:
-    - protocol: TCP
-      port: 5432
+    - from:
+        - podSelector:
+            matchLabels:
+              app: python-app
   egress:
-  - to:
-    - podSelector:
-        matchLabels:
-          app: python-app
-    ports:
-    - protocol: TCP
-      port: 5000
+    - to:
+        - podSelector:
+            matchLabels:
+              app: python-app
+
