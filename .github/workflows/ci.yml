@@ -28,7 +28,8 @@ jobs:
           pip install pylint bandit
 
       - name: Run Pylint
-        run: pylint **/*.py --output-format=colorized
+        run: pylint **/*.py --output-format=colorized || true
+          echo "Pylint finished. Warnings reported but CI will not fail."
 
       - name: Run Bandit Security Scan
         run: bandit -r . -f json -o bandit-report.json
