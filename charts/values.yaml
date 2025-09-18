@@ -1,0 +1,11 @@
+postgresql:
+  user: postgres
+  password: admin123
+  database: mydb
+  pvcSize: 5Gi
+
+python:
+  image: koustavnaha11/aasakoda:latest   # Fixed tag instead of 'latest'
+  containerPort: 5000   # Port your app runs on
+  servicePort: 5000     # ClusterIP/LoadBalancer port
+  nodePort: 30080       # External access port (must be 30000–32767)

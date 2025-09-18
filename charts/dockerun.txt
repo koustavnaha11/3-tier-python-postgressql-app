@@ -1,0 +1,3 @@
+docker run -d   --name mypythonapp   --link mypgdb:mypgdb   -e DB_HOST=mypgdb   -e DB_PORT=5432   -e DB_USER=myuser   -e DB_PASSWORD=mypassword   -e DB_NAME=mydatabase   aasakoda:latest
+
+docker run -d   --name mypgdb   -e POSTGRES_USER=myuser   -e POSTGRES_PASSWORD=mypassword   -e POSTGRES_DB=mydatabase   -p 5432:5432   postgres:15
