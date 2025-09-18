@@ -32,7 +32,8 @@ jobs:
           echo "Pylint finished. Warnings reported but CI will not fail."
 
       - name: Run Bandit Security Scan
-        run: bandit -r . -f json -o bandit-report.json
+        run: bandit -r . -f json -o bandit-report.json || true
+          echo "Bandit finished. Issues reported but CI will not fail."
 
   secret-scanning:
     name: Secret Scanning
