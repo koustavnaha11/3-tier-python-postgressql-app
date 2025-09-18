@@ -46,8 +46,8 @@ spec:
           livenessProbe:
             exec:
               command: ["pg_isready", "-U", "testuser", "-d", "testdb"]
-            initialDelaySeconds: 20
-            periodSeconds: 15
+            initialDelaySeconds: 30
+            periodSeconds: 20
           readinessProbe:
             exec:
               command: ["pg_isready", "-U", "testuser", "-d", "testdb"]
@@ -57,3 +57,4 @@ spec:
             runAsUser: 10001
             runAsGroup: 10001
             readOnlyRootFilesystem: true
+
