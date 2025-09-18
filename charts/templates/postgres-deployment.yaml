@@ -14,9 +14,18 @@ spec:
       labels:
         app: postgres
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: postgres
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - name: postgres
-          image: postgres:15
+          image: postgres:15.3
           imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
@@ -37,15 +46,14 @@ spec:
           livenessProbe:
             exec:
               command: ["pg_isready", "-U", "testuser", "-d", "testdb"]
-            initialDelaySeconds: 10
-            periodSeconds: 10
+            initialDelaySeconds: 20
+            periodSeconds: 15
           readinessProbe:
             exec:
               command: ["pg_isready", "-U", "testuser", "-d", "testdb"]
             initialDelaySeconds: 5
-            periodSeconds: 5
+            periodSeconds: 10
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 10001
+            runAsGroup: 10001
             readOnlyRootFilesystem: true
-

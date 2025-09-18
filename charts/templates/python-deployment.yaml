@@ -14,9 +14,18 @@ spec:
       labels:
         app: python-app
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: python-app
+                topologyKey: "kubernetes.io/hostname"
       containers:
         - name: python-app
-          image: koustavnaha11/aasakoda:latest
+          image: koustavnaha11/aasakoda:v1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
@@ -33,15 +42,16 @@ spec:
             httpGet:
               path: /health
               port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 10
+            initialDelaySeconds: 15
+            periodSeconds: 15
           readinessProbe:
             httpGet:
               path: /health
               port: 5000
             initialDelaySeconds: 5
-            periodSeconds: 5
+            periodSeconds: 10
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 10001
+            runAsGroup: 10001
             readOnlyRootFilesystem: true
+

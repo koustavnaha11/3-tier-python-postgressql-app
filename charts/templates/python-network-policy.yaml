@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: python-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: python-app
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: postgres
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: postgres
