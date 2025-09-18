@@ -4,6 +4,7 @@ metadata:
   name: python-app-pdb
 spec:
   minAvailable: 1
+  unhealthyPodEvictionPolicy: AlwaysAllow
   selector:
     matchLabels:
       app: python-app
